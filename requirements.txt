@@ -1,0 +1,9 @@
+ultralytics>=8.3.0
+onnx>=1.15
+onnxruntime>=1.17
+onnxslim
+opencv-python
+gradio>=4.0
+pandas
+matplotlib
+tabulate

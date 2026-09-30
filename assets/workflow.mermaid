@@ -1,0 +1,16 @@
+flowchart LR
+    subgraph TRAIN["Training pipeline (Colab GPU)"]
+        A[Construction-PPE dataset] --> B[Preprocess + augment<br/>letterbox 640, HSV, flip, mosaic]
+        B --> C[YOLO11n transfer learning<br/>COCO weights, 60 epochs]
+        C --> D[Evaluation<br/>mAP, P/R, confusion matrix]
+        D --> E[Export ONNX]
+        E --> F[INT8 static quantization]
+    end
+    subgraph INFER["Inference pipeline (CPU / edge)"]
+        G[Image / video frame] --> H[Letterbox 640, RGB, /255]
+        H --> I[YOLO detector<br/>ONNX Runtime]
+        I --> J[NMS + confidence filter]
+        J --> K[Compliance logic<br/>assign PPE to persons]
+        K --> L[Annotated frame + status + JSON]
+    end
+    F -. deployed model .-> I
