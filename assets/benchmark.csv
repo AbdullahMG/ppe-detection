@@ -1,0 +1,4 @@
+model,size_MB,mAP50,mAP50_95,cpu_ms_per_img,fps
+PyTorch FP32,5.48,0.538,0.262,161.3,6.2
+ONNX FP32,10.61,0.532,0.253,112.3,8.9
+ONNX INT8,4.46,0.495,0.239,124.1,8.1
